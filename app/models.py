@@ -4,7 +4,6 @@ from django.db import models
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     ROLE = [
-        # TODO: перепилить первое название в человеческое
         ('CR', 'Customer'),
         ('SR', 'Seller'),
     ]
@@ -83,7 +82,7 @@ class Feedback(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='customer_feedback', null=False,
                                  limit_choices_to={'role': 'CR'}, default=None)
     feedback = models.TextField(default=None)
-    transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL(), related_name='transaction_feedback',
+    transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL, related_name='transaction_feedback',
                                     null=False, default=None)
     objects = models.Manager()
 
