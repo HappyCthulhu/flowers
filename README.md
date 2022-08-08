@@ -8,7 +8,7 @@
 ```
 git clone https://github.com/HappyCthulhu/flowers
 cd flowers
-pipenv shel
+pipenv shell
 pipenv install
 python manage.py makemigrations
 python manage.py migrate
