@@ -58,9 +58,9 @@ class Flower(models.Model):
 
 class Transaction(models.Model):
     id = models.AutoField(primary_key=True)
-    seller = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='seller', null=False,
+    seller = models.ForeignKey(User, on_delete=models.SET_DEFAULT, related_name='seller', null=False,
                                limit_choices_to={'role': 'SR'}, default=None)
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='customer', null=False,
+    customer = models.ForeignKey(User, on_delete=models.SET_DEFAULT, related_name='customer', null=False,
                                  limit_choices_to={'role': 'CR'}, default=None)
     # flowers = models.ManyToManyField(Flower, default=None)
     flowers = models.ForeignKey(Flower, default=None, on_delete=models.CASCADE, related_name='flowers', null=False)
@@ -77,12 +77,12 @@ class Transaction(models.Model):
 
 class Feedback(models.Model):
     id = models.AutoField(primary_key=True)
-    seller = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='seller_feedback', null=False,
+    seller = models.ForeignKey(User, on_delete=models.SET_DEFAULT, related_name='seller_feedback', null=False,
                                limit_choices_to={'role': 'SR'}, default=None)
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='customer_feedback', null=False,
+    customer = models.ForeignKey(User, on_delete=models.SET_DEFAULT, related_name='customer_feedback', null=False,
                                  limit_choices_to={'role': 'CR'}, default=None)
     feedback = models.TextField(default=None)
-    transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL, related_name='transaction_feedback',
+    transaction = models.ForeignKey(Transaction, on_delete=models.SET_DEFAULT, related_name='transaction_feedback',
                                     null=False, default=None)
     objects = models.Manager()
 
